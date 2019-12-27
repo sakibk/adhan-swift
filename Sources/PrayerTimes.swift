@@ -178,6 +178,27 @@ public struct PrayerTimes {
             .roundedMinute()
     }
 
+    public init(
+        coordinates: Coordinates,
+        date: DateComponents,
+        fajr: Date,
+        sunrise: Date,
+        dhuhr: Date,
+        asr: Date,
+        maghrib: Date,
+        isha: Date
+        ){
+        self.coordinates = coordinates
+        self.date = date
+        calculationParameters = CalculationMethod.other.params
+        self.fajr = fajr
+        self.sunrise = sunrise
+        self.dhuhr = dhuhr
+        self.asr = asr
+        self.maghrib = maghrib
+        self.isha = isha
+    }
+
     public func currentPrayer(at time: Date = Date()) -> Prayer? {
         if isha.timeIntervalSince(time) <= 0 {
             return .isha
